@@ -1,0 +1,78 @@
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.modal {
+  background: rgb(0, 0, 0);
+  padding: 2rem;
+  border-radius: 8px;
+  width: 500px;
+  text-align: center;
+  box-shadow: 0 0 15px #000;
+}
+
+.instruction {
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.prompt {
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
+
+.wires {
+  display: flex;
+  justify-content: space-around;
+  margin: 1rem 0;
+}
+
+.wire-btn {
+  padding: 0.6rem 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+  color: #fff;
+  transition: transform 0.1s ease;
+}
+
+.wire-btn:hover {
+  transform: scale(1.05);
+}
+
+.wire-btn.red {
+  background-color: #d32f2f;
+}
+.wire-btn.blue {
+  background-color: #1976d2;
+}
+.wire-btn.green {
+  background-color: #388e3c;
+}
+
+.timer {
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  color: #333;
+}
+
+.close-btn {
+  margin-top: 1.5rem;
+  background-color: #666;
+  color: #fff;
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 4px;
+  cursor: pointer;
+}

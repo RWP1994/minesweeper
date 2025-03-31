@@ -1,35 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useState } from 'react';
+import Board from './components/Board';
+import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [difficulty, setDifficulty] = useState('medium');
+  const [resetKey, setResetKey] = useState(0);
+  const [record, setRecord] = useState({ wins: 0, losses: 0 });
+
+  const handleReset = () => {
+    setResetKey(prev => prev + 1); // triggers re-mount of board
+  };
+
+  const handleGameEnd = (result) => {
+    setRecord(prev => ({
+      ...prev,
+      [result]: prev[result] + 1
+    }));
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="App">
+      <h1>Minesweeper</h1>
+
+      <div className="controls">
+        <label>
+          Difficulty:&nbsp;
+          <select
+            value={difficulty}
+            onChange={(e) => setDifficulty(e.target.value)}
+          >
+            <option value="easy">Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+        </label>
+
+        <button onClick={handleReset}>Reset Game</button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      <div className="record">
+        🏆 Wins: {record.wins} | 💀 Losses: {record.losses}
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      <Board
+        key={resetKey} // forces re-render of board on reset
+        difficulty={difficulty}
+        onGameEnd={handleGameEnd}
+      />
+    </div>
+  );
 }
 
-export default App
+export default App;
